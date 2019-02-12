@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnThird;
     Spinner spnPlantes;
     Spinner spnColor;
+    Spinner customSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        customSpinner = findViewById(R.id.spinner3);
+
+        final ArrayList<Planet> planetList = new ArrayList<Planet>();
+        // planet data from http://www.enchantedlearning.com/subjects/astronomy/planets/
+        planetList.add(new Planet("Mercury", 57.9, 4800.0));
+        planetList.add(new Planet("Venus", 108.2, 12104.0));
+        planetList.add(new Planet("Mars", 227.9, 6787.0));
+        // create the custom array adapter. The 3rd parameter is just a placeholder for the parent class pointing to any textview in the new layout.
+        ArrayAdapter<Planet> planetAdapter = new PlanetAdapter(this, R.layout.planet_row, R.id.textViewPlanetName, planetList);
+        planetAdapter.setDropDownViewResource(R.layout.planet_row);
+        customSpinner.setAdapter(planetAdapter);
+        customSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Planet planet = planetList.get(position);
+                txtStatus.setText("Custom Spinner selected : "+ planet.getName());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
             }
         });
     }

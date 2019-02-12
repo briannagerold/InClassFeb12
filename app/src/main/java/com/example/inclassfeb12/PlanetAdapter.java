@@ -31,9 +31,9 @@ public class PlanetAdapter extends ArrayAdapter<Planet> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.planet_row, null);
 
-        TextView tvName=(TextView)view.findViewById(R.id.textViewPlanetName);
-        TextView tvDistance=(TextView)view.findViewById(R.id.textViewPlanetDistance);
-        TextView tvDiameter=(TextView)view.findViewById(R.id.textViewPlanetDiameter);
+        TextView tvName = view.findViewById(R.id.textViewPlanetName);
+        TextView tvDistance = view.findViewById(R.id.textViewPlanetDistance);
+        TextView tvDiameter = view.findViewById(R.id.textViewPlanetDiameter);
         tvName.setText(planet.getName());
         tvDistance.setText(planet.getDistanceFromSol().toString());
         tvDiameter.setText(planet.getDiameter().toString());
